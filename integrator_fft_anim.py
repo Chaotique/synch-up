@@ -37,7 +37,7 @@ y      = odeint(func, y0, t, (N_osc, omg, gamma))%(2*pi)#, Dfun=grad)
 
 
 
-file   = open("integrator.txt",'w')
+file   = open("../pics_zu_github/integrator.txt",'w')
 file.write("integration with\n N_osc ="+repr(N_osc)+"\n")
 file.write("omg = randn, spread = "+repr(spread)+"\n")
 file.write("gamma = "+repr(gamma)+"\n")
@@ -55,17 +55,7 @@ for i in arange(N_time):
     if (phi[i]-phi[i-1])>(pi):
         phase2pi = phase2pi - 2.*pi   
     if (-phi[i]+phi[i-1])>(pi):
-        phase2yep\\ 
-\begin{figure}[h!]\centering\includegraphics[scale = 0.3]{num/github/integratororder20150317-171441.pdf}\includegraphics[scale = 0.3]{num/github/integratorImRe20150317-171441.pdf}\caption{this plot was generated using integrator.py, integration with N\_osc =25, omg = randn, spread = 1, epsilon = 1.5, N\_time = 7000, tmax = 300.0, }\end{figure}
-\\ 
-\begin{figure}[h!]\centering\includegraphics[scale = 0.3]{num/github/integratororder20150317-171910.pdf}\includegraphics[scale = 0.3]{num/github/integratorImRe20150317-171910.pdf}\caption{this plot was generated using integrator.py, integration with N\_osc =25, omg = randn, spread = 1, epsilon = 1.5, N\_time = 7000, tmax = 300.0, }\end{figure}
-\\ 
-\begin{figure}[h!]\centering\includegraphics[scale = 0.3]{num/github/integratororder20150317-172159.pdf}\includegraphics[scale = 0.3]{num/github/integratorImRe20150317-172159.pdf}\caption{this plot was generated using integrator.py, integration with N\_osc =25, omg = randn, spread = 1, epsilon = 1.5, N\_time = 7000, tmax = 300.0, }\end{figure}
-\\ 
-\begin{figure}[h!]\centering\includegraphics[scale = 0.3]{num/github/integratororder20150317-172303.pdf}\includegraphics[scale = 0.3]{num/github/integratorImRe20150317-172303.pdf}\caption{this plot was generated using integrator.py, integration with N\_osc =25, omg = randn, spread = 1, epsilon = 1.5, N\_time = 7000, tmax = 300.0, }\end{figure}
-\\ 
-\begin{figure}[h!]\centering\includegraphics[scale = 0.3]{num/github/integratororder20150317-172546.pdf}\includegraphics[scale = 0.3]{num/github/integratorImRe20150317-172546.pdf}\caption{this plot was generated using integrator.py, integration with N\_osc =25, omg = randn, spread = 1, epsilon = 1.5, N\_time = 7000, tmax = 300.0, }\end{figure}
-pi = phase2pi + 2.*pi
+        phase2pi = phase2pi + 2.*pi
     phi_corr[i] = phi[i] + phase2pi
 
 lin = phi_corr[100-1:]
@@ -124,7 +114,7 @@ for i in range(N_time):
 
 ani = animation.ArtistAnimation(fig, ims, interval=100, blit=True, repeat_delay=1000)
 
-ani.save('dynamicimages.mp4')
+ani.save('../pics_zu_github/dynamicimages.mp4')
 
 plt.figure(7)
 bins = linspace(0,1,100)

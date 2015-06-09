@@ -49,7 +49,7 @@ for l in arange(6):
 
 
     # documentation
-    myfile = open(os.path.basename(__file__) + ".tex", "a+b")
+    myfile = open("../pics_zu_github/" + os.path.basename(__file__) + ".tex", "a+b")
     filename1 = dokufile(myfile)
 
 

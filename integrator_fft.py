@@ -43,7 +43,7 @@ y      = odeint(func, y0, t, (N_osc, omg, epsilon))%(2*pi) # integration
 
 
 # documentation
-myfile = open(os.path.basename(__file__) + ".tex", "a+b")
+myfile = open("../pics_zu_github/" + os.path.basename(__file__) + ".tex", "a+b")
 filename1 = dokufile(myfile)
 
 

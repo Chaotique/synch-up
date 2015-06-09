@@ -44,7 +44,7 @@ ax8.plot(x, 2 * y ** 2 - 1, color='r')
 for i in arange(10):
     gamma  = g[i]
     y      = odeint(func, y0, t, (N_osc, omg, gamma))%(2*pi)#, Dfun=grad)
-    #file   = open("integrator.txt",'w')
+    #file   = open("../pics_zu_github/integrator.txt",'w')
     #file.write("integration with\n N_osc ="+repr(N_osc)+"\n")
     #file.write("omg = randn, spread = "+repr(spread)+"\n")
     #file.write("gamma = "+repr(gamma)+"\n")

@@ -28,7 +28,7 @@ y20 = y0*0.999
 t      = linspace(0, tmax, N_time)      # time points startin with init cond
 y      = odeint(func, y0, t, (N_osc, omg, gamma))%(2*pi)#, Dfun=grad)
 y2      = odeint(func, y20, t, (N_osc, omg, gamma))%(2*pi)
-file   = open("integrator.txt",'w')
+file   = open("../pics_zu_github/integrator.txt",'w')
 file.write("integration with\n N_osc ="+repr(N_osc)+"\n")
 file.write("omg = randn, spread = "+repr(spread)+"\n")
 file.write("gamma = "+repr(gamma)+"\n")

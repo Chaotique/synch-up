@@ -26,7 +26,7 @@ tmax   = 1000.
 y0     = (4*random.randn(N_osc))%(2.*pi)                # initial condition
 t      = linspace(0, tmax, N_time)      # time points startin with init cond
 y      = odeint(func, y0, t, (N_osc, omg, gamma))%(2*pi)#, Dfun=grad)
-file   = open("integrator.txt",'w')
+file   = open("../pics_zu_github/integrator.txt",'w')
 file.write("integration with\n N_osc ="+repr(N_osc)+"\n")
 file.write("omg = randn, spread = "+repr(spread)+"\n")
 file.write("gamma = "+repr(gamma)+"\n")
