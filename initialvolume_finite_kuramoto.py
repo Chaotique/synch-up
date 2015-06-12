@@ -1,4 +1,14 @@
 """
+Finite size effects in a Kuramoto model with natural frequencies omg, 
+global identical coupling epsilon, noise free (except the finite size noise)
+
+here: starting from different initial conditions, time evolution with either 
+gaussian distributed or equidistant natural frequencies
+
+plots:
+
+
+
 
 """
 
@@ -26,23 +36,26 @@ def func(y, t, N_osc, omg, epsilon):
     
 
 # system parameter
-N_osc  = 150                                 # number of osci
+N_osc  = 100                               # number of osci
 spread = 1                                   # spread of osci distrib.
 
 epsilon  = 1.85                              # coupling strength
 
 # intergration parameter   
-N_time = 10000                               # integration partition
+N_time = 10000                              # integration partition
 tmax   = 1000.                               # time
 
 t      = linspace(0, tmax, N_time)   
 
 
-omg    = sort(spread*random.randn(N_osc))    # distribution of omg
-for l in arange(10):    
+omg    = sort(spread*random.randn(N_osc))  #linspace(-spread,spread,N_osc)   # distribution of omg
+
+meanomg = mean(omg)
+print meanomg
+for l in arange(7):    
     # randn: gauss, rand: iid,
     # standard_cauchy: lorentz
-    y0     = (4*random.randn(N_osc))%(2.*pi)     # initial condition
+    y0     = (0.05*(random.rand(N_osc))+linspace(0,pi/2,N_osc))%(2.*pi)     # initial condition
     y      = odeint(func, y0, t, (N_osc, omg, epsilon))%(2*pi) # integration
 
 
@@ -66,8 +79,6 @@ for l in arange(10):
         if (-phi[i]+phi[i-1])>(pi):
             phase2pi = phase2pi + 2.*pi
         phi_corr[i] = phi[i] + phase2pi
-
-
 
 
 
@@ -107,6 +118,7 @@ for l in arange(10):
     plt.figure(3)
     #plt.plot(lin)
     plt.plot(phi_corr)
+    plt.plot(meanomg*t)
     plt.xlabel('$t$')
     plt.ylabel('phase of order parameter')
     plt.grid(True)
