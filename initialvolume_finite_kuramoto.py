@@ -18,7 +18,7 @@ import cmath as cm
 from matplotlib import pyplot as plt
 import os
 from scipy.integrate import odeint
-import time
+import time  
 
 # proper modules
 from integratordocumentation import dokufile, enddoku, savepictopdfandtex
@@ -36,8 +36,8 @@ def func(y, t, N_osc, omg, epsilon):
     
 
 # system parameter
-N_osc  = 100                               # number of osci
-spread = 1                                   # spread of osci distrib.
+N_osc  = 150#00                              # number of osci
+spread = 1.                                   # spread of osci distrib.
 
 epsilon  = 1.85                              # coupling strength
 
@@ -48,14 +48,14 @@ tmax   = 1000.                               # time
 t      = linspace(0, tmax, N_time)   
 
 
-omg    = sort(spread*random.randn(N_osc))  #linspace(-spread,spread,N_osc)   # distribution of omg
-
+omg    = linspace(-spread,spread,N_osc)    #   # distribution of omg
+omg = sort(spread*random.randn(N_osc))
 meanomg = mean(omg)
 print meanomg
-for l in arange(7):    
+for l in arange(3):    
     # randn: gauss, rand: iid,
     # standard_cauchy: lorentz
-    y0     = (0.05*(random.rand(N_osc))+linspace(0,pi/2,N_osc))%(2.*pi)     # initial condition
+    y0     = (0.05*(random.rand(N_osc))+linspace(0,2*pi,num = N_osc, endpoint = False))%(2.*pi)     # initial condition
     y      = odeint(func, y0, t, (N_osc, omg, epsilon))%(2*pi) # integration
 
 
@@ -99,9 +99,9 @@ for l in arange(7):
     #savepictopdfandtex('alltheta', filename1, plt, myfile, scale)
 
     plt.figure(1)
-    plt.plot(order.real,order.imag)
-    plt.plot(order.real[0:20],order.imag[0:20])
-    plt.plot(order.real[N_time-20:N_time-1],order.imag[N_time-20:N_time-1])
+    plt.plot(order.real,order.imag, 'o')
+    plt.plot(order.real[0:20],order.imag[0:20], 'o')
+    plt.plot(order.real[N_time-20:N_time-1],order.imag[N_time-20:N_time-1], 'o')
     plt.xlabel(r'$Re(R)$')
     plt.ylabel(r'$Im(R)$')
     plt.axis=([-1,1,-1,1])
@@ -109,7 +109,8 @@ for l in arange(7):
     savepictopdfandtex('order', filename1, plt, myfile, scale)
 
     plt.figure(2)
-    plt.plot(abs(order))
+    R = abs(order)
+    plt.plot(R)
     plt.xlabel('$t$')
     plt.ylabel('norm of order parameter')
     plt.grid(True)
@@ -118,9 +119,12 @@ for l in arange(7):
     plt.figure(3)
     #plt.plot(lin)
     plt.plot(phi_corr)
-    plt.plot(meanomg*t)
+    plt.plot(meanomg*t, 'g')
     plt.xlabel('$t$')
     plt.ylabel('phase of order parameter')
+    Rmean = mean(R[200:N_time-1])
+    meanvelocity = meanomg/Rmean
+    plt.plot(meanomg/R*t,'b--')
     plt.grid(True)
     savepictopdfandtex('phase', filename1, plt, myfile, scale)
 
